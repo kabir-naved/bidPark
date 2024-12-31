@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
 import { formSchema } from "@/lib/validation";
 import { z } from "zod";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/use-toast"; 
 import { useRouter } from "next/navigation";
 import { createPitch } from "@/lib/actions";
 
@@ -16,7 +16,7 @@ const StartupForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [pitch, setPitch] = useState("");
   const { toast } = useToast();
-  const router = useRouter();
+  const router = useRouter()
 
   const handleFormSubmit = async (prevState: any, formData: FormData) => {
     try {
@@ -42,7 +42,7 @@ const StartupForm = () => {
       }
 
       return result;
-    } catch (error) {
+    } catch (error) { 
       if (error instanceof z.ZodError) {
         const fieldErorrs = error.flatten().fieldErrors;
 
@@ -55,7 +55,8 @@ const StartupForm = () => {
         });
 
         return { ...prevState, error: "Validation failed", status: "ERROR" };
-      }
+      
+    }
 
       toast({
         title: "Error",
@@ -92,7 +93,7 @@ const StartupForm = () => {
 
         {errors.title && <p className="startup-form_error">{errors.title}</p>}
       </div>
-
+ 
       <div>
         <label htmlFor="description" className="startup-form_label">
           Description
@@ -142,7 +143,7 @@ const StartupForm = () => {
         {errors.link && <p className="startup-form_error">{errors.link}</p>}
       </div>
 
-      <div data-color-mode="light">
+     <div data-color-mode="light">
         <label htmlFor="pitch" className="startup-form_label">
           Pitch
         </label>
@@ -166,16 +167,16 @@ const StartupForm = () => {
         {errors.pitch && <p className="startup-form_error">{errors.pitch}</p>}
       </div>
 
-      <Button
+     <Button
         type="submit"
         className="startup-form_btn text-white"
         disabled={isPending}
       >
         {isPending ? "Submitting..." : "Submit Your Pitch"}
         <Send className="size-6 ml-2" />
-      </Button>
+      </Button> 
     </form>
   );
 };
 
-export default StartupForm;
+export default StartupForm
